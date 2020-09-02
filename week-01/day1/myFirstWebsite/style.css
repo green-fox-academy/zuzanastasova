@@ -1,0 +1,80 @@
+body {
+    font-family: 'Courier Prime', monospace;
+    background-image: url("assets/topography.png");
+    margin: 0;
+    line-height: 1.6;
+}
+
+.header { 
+    background-color: #333333;
+    width: 100% ;
+    height: 50px;
+    display: inline-block;
+}
+
+.header-left {
+    float: left;
+    padding-top: 2mm;
+}
+
+.header-right {
+    float: right;
+    padding-top: 3mm;
+    font-size: 18px;
+    word-spacing: 40px;
+}
+
+.container {
+    padding-right: 10%;
+    padding-left: 10%;
+    padding-bottom: 10%;
+}
+
+p {
+    text-align: justify;
+}
+
+.links {
+    color: #ff0099;
+    text-decoration-line: underline;
+    position: relative;
+}
+
+.myname {
+    padding-top: 50px;
+    font-size: 55px; 
+    margin-bottom: -4mm;
+}
+
+.developer {
+    color: #ff0099;
+    font-size: 33px; 
+    margin-bottom: -5mm;
+}
+
+.introduction {
+    font-size: 23px;
+}
+
+.title {
+    font-size: 27px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.division {
+    text-align: center;
+    padding-top: 30px;
+    scroll-padding-bottom: 25px;
+    font-size: 15px;
+}
+
+.definition h3 {
+    font-size: 27px;
+    font-weight: bold;
+    margin-bottom: 0mm;
+}
+
+.definition p {
+    font-size: 17px;
+}
