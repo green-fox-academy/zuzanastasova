@@ -10,7 +10,7 @@ public class GuessTheNumber {
         Scanner userInput = new Scanner(System.in);
         System.out.println("I am thinking of a whole number between 0 and 100, what do you think it is?");
         int number = userInput.nextInt();
-        int count = 0;
+
         while (number != randomNumber) {
             if (randomNumber>number) {
                 System.out.println("Higher!");
