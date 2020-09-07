@@ -3,7 +3,7 @@ package com.company;
 public class Greet {
     public static void main(String[] args) {
         String al = "Green Fox";
-        greet(al);
+        System.out.println(greet(al));
 //  From now on, create the usual class wrapper
 //  and main method on your own.
 
@@ -12,8 +12,7 @@ public class Greet {
 //     - Greeting is printing e.g. `Greetings dear, Green Fox`
 // - Greet `al`
     }
-    public static void greet(String Name){
-        System.out.println("Greetings dear, " + Name );
-
+    public static String greet(String Name){
+        return "Greetings dear, " + Name;
     }
 }
