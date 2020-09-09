@@ -30,7 +30,7 @@ public class WriteMultipleLines {
         }
         try {
             Path myPath = Paths.get(getPath);
-            Files.write(myPath, myList, StandardOpenOption.APPEND);
+            Files.write(myPath, myList);
         } catch (IOException e){
         }
     }
