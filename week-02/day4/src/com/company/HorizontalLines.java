@@ -17,7 +17,6 @@ public class HorizontalLines {
         int startX = scanner.nextInt();
         System.out.println("Write another whole number, please:");
         int startY = scanner.nextInt();
-       ;
         for (int i = 0; i < 3; i++) {
             Drawing(startX, startY, graphics);
             startY += 20;
@@ -41,7 +40,6 @@ public class HorizontalLines {
         jFrame.setVisible(true);
         jFrame.pack();
     }
-
     static class ImagePanel extends JPanel {
         @Override
         protected void paintComponent(Graphics graphics) {
