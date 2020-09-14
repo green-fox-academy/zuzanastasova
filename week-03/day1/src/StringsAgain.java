@@ -5,9 +5,9 @@ public class StringsAgain {
 
     public static String strings (String string) {
         if (string.length() == 0)
-            return string;
+            return "";
         else if (string.charAt(0) == 'x') {
-            string = string.substring(0, 0) + string.substring(1);
+            return strings(string.substring(1));
         }
         return  string.charAt(0) + strings(string.substring(1)) ;
     }
