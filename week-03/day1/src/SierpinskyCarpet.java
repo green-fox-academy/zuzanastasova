@@ -12,10 +12,10 @@ public class SierpinskyCarpet {
         int side = size/3;
         if (lvl == 0)
             return;
-        graphics.fillRect(x + size, y + size,size,size);
+        graphics.fillRect(x + side, y + side,side,side);
         for (int row = 0; row < 3; row ++) {
             for (int col = 0; col < 3; col++) {
-                drawSierpinsky(graphics, lvl-1, side, (size * row) + x, (size * col) + y);
+                drawSierpinsky(graphics, lvl-1, side, (side * row) + x, (side * col) + y);
             }
         }
 
