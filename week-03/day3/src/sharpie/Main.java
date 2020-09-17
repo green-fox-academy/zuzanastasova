@@ -4,11 +4,11 @@ public class Main {
     public static void main(String[] args) {
 
         Sharpie sharpieOne = new Sharpie();
-        sharpieOne.color = "blue";
-        sharpieOne.width = (float) 1.5990;
-        sharpieOne.inkAmount = (float) 35.666;
+        sharpieOne.setColor("green");
+        sharpieOne.setWidth(1.5990f);
+        sharpieOne.setInkAmount (35.666f);
         sharpieOne.use();
 
-        System.out.println(sharpieOne.sharpieImage());
+        System.out.println(sharpieOne.toString());
     }
 }

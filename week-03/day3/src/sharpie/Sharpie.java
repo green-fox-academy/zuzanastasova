@@ -1,19 +1,38 @@
 package sharpie;
 
 public class Sharpie {
-    String color;
-    float width;
-    float inkAmount;
+
+    private String color;
+    private float width;
+    private float inkAmount;
 
     public Sharpie(){
         inkAmount = 100;
     }
+
+    public void setColor (String color){
+        this.color = color;
+
+    }
+
+    public void setWidth (float width) {
+        this.width = width;
+    }
+
+    public void setInkAmount (float inkAmount) {
+        this.inkAmount = inkAmount;
+    }
+
+    public String getColor (){
+        return color;
+    }
+
     public void use () {
         inkAmount --;
     }
 
-    public String sharpieImage () {
-        return color + ", " + width + ", " + inkAmount;
+    public String toString () {
+        return getColor() + ", " + width + ", " + inkAmount;
     }
     /*Create Sharpie class
     We should know about each sharpie their color (which should be a string), width (which will be a floating point number), inkAmount (another floating point number)
