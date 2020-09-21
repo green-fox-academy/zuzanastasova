@@ -1,25 +1,25 @@
-package Homework;
+package GreenFoxOrganization;
 
 public class Person {
 
-    String name;
-    int age;
-    String gender;
+    protected String name;
+    protected int age;
+    protected String gender;
 
     public Person(){
         name = "Jane Doe";
         age = 30;
-        gender = "Female";
+        gender = "female";
     }
 
-    public Person (String name, int age, String gender) {
+    public Person(String name, int age, String gender) {
         this.name = name;
         this.age = age;
         this.gender = gender;
     }
 
     public void introduce() {
-        System.out.println("Hi, I'm " + name + ", " + age + ", " + gender);
+        System.out.println("Hi, I'm " + name + ", a " + age + " years old " + gender + ".");
     }
 
     public void getGoal() {

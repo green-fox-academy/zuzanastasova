@@ -9,7 +9,10 @@ public class Student {
     int skippedDays;
 
     public Student(){
-
+        name = "Jane Doe";
+        age = 30;
+        gender = "Female";
+        previousOrganization = "The School of Life";
     }
 
     public Student(String name, int age, String gender, String previousOrganization) {
@@ -20,8 +23,8 @@ public class Student {
         this.skippedDays = 0;
     }
 
-    public int skipDays(int numberOfDays) {
-        return skippedDays + numberOfDays;
+    public void skipDays(int numberOfDays) {
+        skippedDays += numberOfDays;
     }
 
     public void introduce() {

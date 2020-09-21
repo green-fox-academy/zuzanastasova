@@ -8,7 +8,10 @@ public class Sponsor {
     int hiredStudents;
 
     public Sponsor(){
-
+        name = "Jane Doe";
+        age = 30;
+        gender = "Female";
+        company = "Google";
     }
 
     public Sponsor (String name, int age, String gender, String company) {

@@ -7,7 +7,10 @@ public class Mentor {
     String level;
 
     public Mentor(){
-
+        name = "Jane Doe";
+        age = 30;
+        gender = "Female";
+        level = "intermediate";
     }
 
     public Mentor (String name, int age, String gender, String level) {
