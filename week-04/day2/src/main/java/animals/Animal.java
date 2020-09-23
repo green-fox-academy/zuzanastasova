@@ -1,24 +1,18 @@
 package main.java.animals;
 
-public class Animal {
+public abstract class Animal {
 
-    private String name;
-    private int age;
-    private String gender;
+    protected String name;
+    protected int age;
+    protected String gender;
 
     public Animal(String name) {
         this.name = name;
     }
 
-    public String getName() {
-        return name;
-    }
+    public abstract String getName();
 
-    public String breed() {
-        String breedMethod = "";
-        return breedMethod;
-    }
-
+    public abstract String breed();
 
     public int getAge() {
         return age;

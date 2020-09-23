@@ -7,7 +7,11 @@ public class Reptile extends Animal {
 
     public Reptile (String name) {
         super(name);
-        super.getName();
+    }
+
+    @Override
+    public String getName() {
+        return name;
     }
 
     public String breed() {
