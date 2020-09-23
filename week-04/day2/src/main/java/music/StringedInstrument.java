@@ -1,8 +1,8 @@
 package main.java.music;
 
-public class StringedInstrument extends Instrument {
+public abstract class StringedInstrument extends Instrument {
 
-    private int numberOfStrings;
+    protected int numberOfStrings;
 
     public StringedInstrument(String name, int numberOfStrings) {
         super(name);
@@ -10,8 +10,10 @@ public class StringedInstrument extends Instrument {
     }
 
 
-    public void sound(String sound) {
-        super.play();
-        System.out.println(name + ", a " + numberOfStrings + "-stringed instrument that goes " + sound);
+    public abstract void sound();
+
+    @Override
+    public void play() {
+        sound();
     }
 }

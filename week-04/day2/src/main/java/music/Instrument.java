@@ -1,6 +1,6 @@
 package main.java.music;
 
-public class Instrument {
+public abstract class Instrument {
 
     protected String name;
     private String sound;
@@ -9,7 +9,5 @@ public class Instrument {
         this.name = name;
     }
 
-    public void play(){
-
-    }
+    public abstract void play();
 }
