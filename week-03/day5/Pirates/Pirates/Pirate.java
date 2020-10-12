@@ -45,8 +45,11 @@ public class Pirate {
         return dead = true;
     }
 
-    public void brawl(){
-
+    public void brawl(Pirate pirate){
+        Random random = new Random();
+        if (pirate.dead == false) {
+            
+            }
     }
 
     public int getRum() {
