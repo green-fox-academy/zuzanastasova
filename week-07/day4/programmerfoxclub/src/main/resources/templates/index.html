@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Mr. Fox</title>
+    <link rel="stylesheet" href="/styles.css"/>
+</head>
+<body>
+<div th:replace="~{fragments/links(${name})}"></div>
+<img th:src="@{/greenfox.png}" alt="Mr. Fox">
+<p th:text="'This is ' + ${fox.getName()} + '. Currently living on ' + ${fox.getFood()} + ' and ' + ${fox.getDrink()} + '. The fox knows ' + ${fox.getTricks().size()} + ' tricks.'"></p>
+<h2>
+Known tricks
+</h2>
+<ul th:if="${fox.getTricks().size() != 0}" th:each="trick : ${fox.getTricks()}">
+    <li th:text="${trick}"></li>
+</ul>
+<p th:if="${fox.getTricks().size()  == 0}" th:text="'You know no tricks, yet. Go and learn some.'"></p>
+</body>
+</html>
