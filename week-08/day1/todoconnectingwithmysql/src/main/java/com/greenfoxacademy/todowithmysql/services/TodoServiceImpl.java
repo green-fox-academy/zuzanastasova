@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TodoServiceImpl implements TodoService{
@@ -26,6 +27,18 @@ public class TodoServiceImpl implements TodoService{
         List<Todo> todos = new ArrayList<>();
         todoRepository.findAll().forEach(todos::add);
         return todos;
+    }
+
+    public void deleteById(Long id){
+        todoRepository.deleteById(id);
+    }
+
+    public Optional<Todo> findById(Long id){
+        return todoRepository.findById(id);
+    }
+
+    public List<Todo> searchByTitle(String title) {
+        return todoRepository.findAllByTitleContainingIgnoreCase(title);
     }
 
 }

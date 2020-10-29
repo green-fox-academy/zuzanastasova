@@ -7,7 +7,14 @@
 </head>
 <body>
 <h1>ToDo's for today:</h1>
+<p><a th:href="@{/assigneelist}">List all Assignees</a></p>
 <p><a th:href="@{/todo/add}">Add new ToDo</a></p>
+<br>
+<form action="/todo/search-by-title/" + title >
+    <input type="text" placeholder="Search.." name="title">
+    <button type="submit">Search</button>
+</form>
+<br>
 <table>
     <tr>
         <th>Id</th>
@@ -20,6 +27,8 @@
         <td th:text="${todo.title}"></td>
         <td th:text="${todo.urgent}"></td>
         <td th:text="${todo.done}"></td>
+        <td><a th:href="|/todo/${todo.getId()}/delete|">delete</a></td>
+        <td><a th:href="|/todo/${todo.getId()}/edit|">edit</a></td>
     </tr>
 </table>
 </body>
