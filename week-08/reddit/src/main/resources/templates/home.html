@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reddit Home Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+</head>
+<body>
+<p><a th:href="@{/submit}">Submit new post</a></p>
+<h1>Trending posts</h1>
+<table class="table table-striped">
+    <tr th:each="post : ${posts}">
+        <td th:text="${post.likes}"></td>
+        <td><a th:href="@{'/' + ${currentPage} + '/' + ${post.id} + '/increment'}">+</a></td>
+        <td><a th:href="@{'/' + ${currentPage} + '/' + ${post.id} + '/decrement'}">-</a></td>
+        <td><a th:text="${post.title}" th:href="${post.url}"></a></td>
+        <td th:text="${post.date}"></td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <td><a th:href="@{'/' + ${currentPage - 1}}"><<</a></td>
+        <td th:text="${currentPage + 1}"></td>
+        <td><a th:href="@{'/' + ${currentPage + 1}}">>></a></td>
+    </tr>
+</table>
+</body>
+</html>
