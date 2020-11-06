@@ -1,14 +1,19 @@
 package com.greenfoxacademy.todowithmysql.models;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.io.Serializable;
+import javax.persistence.*;
 
 @Entity
-public class Todo {
-
+@Getter
+@Setter
+@AllArgsConstructor
+@Builder
+public class Todo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -16,26 +21,55 @@ public class Todo {
     private boolean urgent;
     private boolean done;
 
-    public Todo(){
+    @ManyToOne()
+    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Todo() {
+
+    }
+
+    public Todo(Long id, String title, boolean urgent, boolean done) {
+        this.id = id;
+        this.title = title;
+        this.urgent = urgent;
+        this.done = done;
+
+    }
+
+    public Todo(String title, boolean urgent, boolean done) {
+        this.title = title;
+        this.urgent = urgent;
+        this.done = done;
+
     }
 
     public Todo(String title) {
         this.title = title;
         this.urgent = false;
         this.done = false;
+
     }
 
-    public Todo(String title,boolean urgent, boolean done) {
+    public Todo(String title, boolean urgent) {
         this.title = title;
         this.urgent = urgent;
-        this.done = done;
+        this.done = false;
+
     }
 
     public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -62,5 +96,4 @@ public class Todo {
     public void setDone(boolean done) {
         this.done = done;
     }
-
 }

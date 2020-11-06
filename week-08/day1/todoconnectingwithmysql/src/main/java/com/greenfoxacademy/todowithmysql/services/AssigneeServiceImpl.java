@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AssigneeServiceImpl implements AssigneeService{
@@ -18,9 +19,19 @@ public class AssigneeServiceImpl implements AssigneeService{
     }
 
     public List<Assignee> findAllAssignees(){
-        List<Assignee> assignees = new ArrayList<>();
-        assigneeRepository.findAll().forEach(assignees::add);
-        return assignees;
+        return new ArrayList<>(assigneeRepository.findAll());
+    }
+
+    public void addAssignee(Assignee assignee){
+            assigneeRepository.save(assignee);
+    }
+
+    public void deleteByIdAssignee(Long id){
+        assigneeRepository.deleteById(id);
+    }
+
+    public Optional<Assignee> findByIdAssignee(Long id) {
+        return assigneeRepository.findById(id);
     }
 
 }

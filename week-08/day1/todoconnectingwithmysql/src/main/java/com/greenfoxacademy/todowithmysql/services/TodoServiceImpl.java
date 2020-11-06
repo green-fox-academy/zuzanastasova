@@ -18,15 +18,17 @@ public class TodoServiceImpl implements TodoService{
     }
 
     public void addTodo(Todo todo){
-        if (todo.getId() == null) {
         todoRepository.save(todo);
-        }
     }
 
     public List<Todo> findAllTodos(){
         List<Todo> todos = new ArrayList<>();
-        todoRepository.findAll().forEach(todos::add);
+        todos.addAll(todoRepository.findAll());
         return todos;
+    }
+
+    public List<Todo> findAllTodosSortedByUrgency(){
+        return new ArrayList<>(todoRepository.findAllByOrderByUrgentDesc());
     }
 
     public void deleteById(Long id){

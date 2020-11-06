@@ -1,7 +1,9 @@
 package com.greenfoxacademy.todowithmysql.controllers;
 
 import com.greenfoxacademy.todowithmysql.models.Todo;
+import com.greenfoxacademy.todowithmysql.services.AssigneeService;
 import com.greenfoxacademy.todowithmysql.services.TodoService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -12,20 +14,23 @@ import java.util.Optional;
 public class TodoController {
 
     private final TodoService todoService;
+    private final AssigneeService assigneeService;
 
-    public TodoController(TodoService todoService) {
+    @Autowired
+    public TodoController(TodoService todoService, AssigneeService assigneeService) {
         this.todoService = todoService;
+        this.assigneeService = assigneeService;
     }
 
-    @GetMapping("/todo")
-    public String list(Model model){
-        model.addAttribute("todos", todoService.findAllTodos());
+    @GetMapping({"/todo/{userName}", "/{userName}", "/", "/todo"})
+    public String list(Model model, @PathVariable(required = false) String userName){
+        model.addAttribute("todos", todoService.findAllTodosSortedByUrgency());
         return "todolist";
     }
 
     @GetMapping("/todo/active")
     public String listActive(Model model){
-        model.addAttribute("todos", todoService.findAllTodos());
+        model.addAttribute("todos", todoService.findAllTodosSortedByUrgency());
         return "activeTodoList";
     }
 
@@ -48,18 +53,24 @@ public class TodoController {
     }
 
     @GetMapping("/todo/{id}/edit")
-    public String editTodoByIdPage(@PathVariable long id, Model model) {
+    public String getEditForm(Model model, @PathVariable Long id) {
         Optional<Todo> todo = todoService.findById(id);
-        if (todo.isPresent()) {
+        if(todo.isPresent()) {
             model.addAttribute("todo", todo.get());
+            model.addAttribute("assignees", assigneeService.findAllAssignees());
             return "edit";
         }
         return "redirect:/todo";
     }
 
-    @PostMapping("/todo/edit")
-    public String editTodoById(@ModelAttribute Todo todo) {
-        todoService.addTodo(todo);
+    @PostMapping("/todo/{id}/edit")
+    public String editTodo(@PathVariable Long id,
+                           @ModelAttribute("title") String title,
+                           @ModelAttribute("urgent") String urgent,
+                           @ModelAttribute("done") String done) {
+        boolean urgentBoolean = (urgent.equals("true"))? true: false;
+        boolean doneBoolean = (done.equals("true"))? true: false;
+        todoService.addTodo(new Todo(id, title, urgentBoolean, doneBoolean));
         return "redirect:/todo";
     }
 

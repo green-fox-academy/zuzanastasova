@@ -13,5 +13,6 @@ public interface TodoService {
     void deleteById(Long id);
     Optional<Todo> findById(Long id);
     public List<Todo> searchByTitle(String title);
+    public List<Todo> findAllTodosSortedByUrgency();
 
 }

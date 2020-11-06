@@ -1,9 +1,7 @@
 package com.greenfoxacademy.todowithmysql.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Assignee {
@@ -14,8 +12,9 @@ public class Assignee {
     private String name;
     private String email;
 
-    public Assignee(String name, String email, Long id) {
-        this.id = id;
+
+    public Assignee(String name, String email) {
+        this.id = null;
         this.name = name;
         this.email = email;
     }
