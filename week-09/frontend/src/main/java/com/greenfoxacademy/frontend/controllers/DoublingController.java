@@ -11,16 +11,21 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.List;
 
 @Controller
-public class MainController {
+public class DoublingController {
 
     private final LogEntriesService logEntriesService;
 
-    public MainController(LogEntriesService logEntriesService) {
+    public DoublingController(LogEntriesService logEntriesService) {
         this.logEntriesService = logEntriesService;
     }
 
-    @GetMapping("/")
-    public String index(){
-        return "index";
+    @ResponseBody
+    @GetMapping("/doubling")
+    public Doubling doubling(@RequestParam(required = false) Integer input) {
+        logEntriesService.saveLog(new LogEntries("/doubling", "received: " + input));
+        if (input != null) {
+            return new Doubling(input);
+        } else
+            return new Doubling();
     }
 }

@@ -6,6 +6,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface SithRepository{
 
-    Sith sith = new Sith();
-
 }
