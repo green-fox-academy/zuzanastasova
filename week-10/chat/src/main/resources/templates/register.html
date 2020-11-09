@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th=http://www.thymeleaf.org>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Register, please!</h1>
+<form action="/register" method="post">
+    <label for="login">
+        Username:
+        <input type="text" id="login" name="login" placeholder="Insert username" required>
+    </label>
+    <br>
+    <label for="password">
+        Password:
+        <input type="text" id="password" name="password" placeholder="Insert password" required>
+    </label>
+    <br>
+    <label for="confirm_password">
+        Confirm password:
+        <input type="text" id="confirm_password" name="confirm_password" placeholder="Confirm password" required>
+    </label>
+    <br>
+    <button type="submit">Submit</button>
+</form>
+<br>
+<p><a href="/login">Do you have an account already? Log in!</a></p>
+<script>
+    var password = document.getElementById("password")
+        , confirm_password = document.getElementById("confirm_password");
+
+    function validatePassword() {
+        if (password.value !== confirm_password.value) {
+            confirm_password.setCustomValidity("Passwords Don't Match");
+        } else {
+            confirm_password.setCustomValidity('');
+        }
+    }
+
+    password.onchange = validatePassword;
+    confirm_password.onkeyup = validatePassword;
+</script>
+</body>
+</html>
