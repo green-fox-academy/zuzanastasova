@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th=http://www.thymeleaf.org>
+<head>
+    <meta charset="UTF-8">
+    <title>Update your profile</title>
+</head>
+<body>
+<h1>Here you can change your profile information!</h1>
+<form action="/api/user/update" method="post">
+    <label for="username">
+        New username:
+        <input type="text" id="username" name="username" placeholder="Insert new username" required>
+    </label>
+    <br>
+    <label for="avatarUrl">
+        Avatar URL:
+        <input type="text" id="avatarUrl" name="avatarUrl" placeholder="Insert url of your Avatar" required>
+    </label>
+    <br>
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>

@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>Register, please!</h1>
-<form action="/register" method="post">
+<form action="/api/user/register" method="post">
     <label for="login">
         Username:
         <input type="text" id="login" name="login" placeholder="Insert username" required>
@@ -25,7 +25,7 @@
     <button type="submit">Submit</button>
 </form>
 <br>
-<p><a href="/login">Do you have an account already? Log in!</a></p>
+<p><a href="/api/user/login">Do you already have an account? Log in!</a></p>
 <script>
     var password = document.getElementById("password")
         , confirm_password = document.getElementById("confirm_password");

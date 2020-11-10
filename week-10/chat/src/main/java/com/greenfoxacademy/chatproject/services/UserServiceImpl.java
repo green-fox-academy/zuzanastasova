@@ -1,27 +1,16 @@
 package com.greenfoxacademy.chatproject.services;
 
-import com.greenfoxacademy.chatproject.models.User;
-import com.greenfoxacademy.chatproject.models.UserLoginResponseDTO;
-import com.greenfoxacademy.chatproject.models.UserRequestDTO;
-import com.greenfoxacademy.chatproject.models.UserResponseDTO;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.ResponseEntity;
+import com.greenfoxacademy.chatproject.models.*;
+import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.List;
-import java.util.Objects;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-    private User user;
-    private List<User> users;
     public static String apiKey;
 
-    public void registerHttpRequest(UserRequestDTO userRequestDTO){
+    public void register(UserRequestDTO userRequestDTO){
         RestTemplate restTemplate = new RestTemplate();
         HttpEntity<UserRequestDTO> requestUser = new HttpEntity<>(userRequestDTO);
         ResponseEntity<UserResponseDTO> responseUser = restTemplate
@@ -29,13 +18,17 @@ public class UserServiceImpl implements UserService {
         UserResponseDTO responseBody = responseUser.getBody();
     }
 
-    public String loginHttpRequest(UserRequestDTO userRequestDTO){
+    public String login(UserRequestDTO userRequestDTO){
         RestTemplate restTemplate = new RestTemplate();
         HttpEntity<UserRequestDTO> requestUser = new HttpEntity<>(userRequestDTO);
-        ResponseEntity<UserLoginResponseDTO> responseUser = restTemplate
-                .exchange("https://sage-chat.herokuapp.com/api/user/register", HttpMethod.POST, requestUser, UserLoginResponseDTO.class);
+        ResponseEntity<UserLoginResponseDTO> responseUser;
+        try {
+            responseUser = restTemplate
+                    .exchange("https://sage-chat.herokuapp.com/api/user/login", HttpMethod.POST, requestUser, UserLoginResponseDTO.class);
+        } catch (Exception e){
+            responseUser = new ResponseEntity<>(new UserLoginResponseDTO(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
         UserLoginResponseDTO responseBody = responseUser.getBody();
-        assert responseBody != null;
         if (responseBody.getApiKey() != null) {
             apiKey = responseUser.getBody().getApiKey();
             return apiKey;
@@ -43,9 +36,37 @@ public class UserServiceImpl implements UserService {
             return null;
     }
 
-    public void update(UserRequestDTO userRequestDTO){
+    public void update(UpdateRequestDTO updateRequestDTO){
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("apiKey", apiKey);
         RestTemplate restTemplate = new RestTemplate();
-        HttpEntity<UserRequestDTO> requestUser = new HttpEntity<>(userRequestDTO);
-        requestUser.getHeaders().add("apiKey", apiKey);
+        HttpEntity<UpdateRequestDTO> requestUser = new HttpEntity<>(updateRequestDTO, headers);
+        ResponseEntity<UpdateResponseDTO> responseUser;
+        try {
+            responseUser = restTemplate
+                    .exchange("https://sage-chat.herokuapp.com/api/user/update", HttpMethod.POST, requestUser, UpdateResponseDTO.class);
+        } catch (Exception e) {
+            responseUser = new ResponseEntity<>(new UpdateResponseDTO(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        UpdateResponseDTO responseBody = responseUser.getBody();
+    }
+
+    public Boolean logout(){
+        RestTemplate restTemplate = new RestTemplate();
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("apiKey", apiKey);
+        HttpEntity request = new HttpEntity<>(headers);
+        ResponseEntity<Boolean> response;
+        try {
+            response = restTemplate.exchange("https://sage-chat.herokuapp.com/api/user/logout", HttpMethod.POST, request, Boolean.class);
+        } catch (Exception e){
+            response = new ResponseEntity<>(Boolean.FALSE, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        Boolean responseBody = response.getBody();
+        if (responseBody){
+            apiKey = "";
+        }
+        return responseBody;
     }
 }

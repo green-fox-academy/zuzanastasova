@@ -7,13 +7,15 @@ public class UserResponseDTO {
 
     private String username;
     private Long userId;
+    private String avatarUrl;
 
     public UserResponseDTO() {
     }
 
-    public UserResponseDTO(String username, Long userId) {
+    public UserResponseDTO(String username, Long userId, String avatarUrl) {
         this.username = username;
         this.userId = userId;
+        this.avatarUrl = avatarUrl;
     }
 
     public String getUsername() {
@@ -30,5 +32,13 @@ public class UserResponseDTO {
 
     public void setUserId(Long userId) {
         this.userId = userId;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 }

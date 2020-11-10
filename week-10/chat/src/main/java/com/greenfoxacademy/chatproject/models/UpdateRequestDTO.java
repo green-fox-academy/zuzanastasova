@@ -3,18 +3,16 @@ package com.greenfoxacademy.chatproject.models;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class UpdateResponseDTO {
+public class UpdateRequestDTO {
 
     private String username;
-    private Long userId;
     private String avatarUrl;
 
-    public UpdateResponseDTO() {
+    public UpdateRequestDTO() {
     }
 
-    public UpdateResponseDTO(String username, Long userId, String avatarUrl) {
+    public UpdateRequestDTO(String username, String avatarUrl) {
         this.username = username;
-        this.userId = userId;
         this.avatarUrl = avatarUrl;
     }
 
@@ -24,14 +22,6 @@ public class UpdateResponseDTO {
 
     public void setUsername(String username) {
         this.username = username;
-    }
-
-    public Long getUserId() {
-        return userId;
-    }
-
-    public void setUserId(Long userId) {
-        this.userId = userId;
     }
 
     public String getAvatarUrl() {

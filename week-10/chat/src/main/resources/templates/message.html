@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th=http://www.thymeleaf.org>
+<head>
+    <meta charset="UTF-8">
+    <title>Chat with others</title>
+</head>
+<body>
+
+<h1>Here you can chat with others</h1>
+<form action="/api/message/" method="post">
+    <label for="message">
+        Write your message:
+        <input type="text" id="message" name="message" placeholder="Insert your message">
+    </label>
+    <button type="submit">Send message</button>
+</form>
+<button type="submit" class="btn btn-secondary"><a href="/api/user/logout">Logout</a></button>
+</body>
+</html>
