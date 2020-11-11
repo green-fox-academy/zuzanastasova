@@ -63,14 +63,17 @@ public class MainController {
     }
 
     @GetMapping("/api/message/")
-    public String getMessagePage(Model model, @ModelAttribute GetMessageRequestDTO getMessageRequestDTO){
+    public String getMessagePage(Model model, @ModelAttribute GetMessageRequestDTO getMessageRequestDTO, HttpSession session){
+        session.setAttribute("apiKey", userService.getApiKey());
         model.addAttribute("messages", messageService.getMessages(getMessageRequestDTO));
         return "message";
     }
 
     @PostMapping("/api/message/")
-    public String postMessage(Model model, @ModelAttribute PostMessageRequestDTO postMessageRequestDTO){
-        model.addAttribute("message", messageService.postMessage(postMessageRequestDTO));
+    public String postMessage(Model model, @ModelAttribute PostMessageRequestDTO postMessageRequestDTO, @ModelAttribute GetMessageRequestDTO getMessageRequestDTO, HttpSession session){
+        session.setAttribute("apiKey", userService.getApiKey());
+        model.addAttribute("messages", messageService.getMessages(getMessageRequestDTO));
+        messageService.postMessage(postMessageRequestDTO);
         return "message";
     }
 

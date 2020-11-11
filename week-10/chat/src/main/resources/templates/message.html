@@ -7,10 +7,16 @@
 <body>
 
 <h1>Here you can chat with others</h1>
+<div>
+    <ul th:each="message: ${messages}" id="message-box">
+        <img th:src="@{${message.getAuthor().getAvatarUrl()}}" alt="User Avatar" class="user-avatar"
+             title="Click here to update profile">
+        <li th:text="${message.getAuthor().getUsername()} + ' - ' + ${message.getCreated()}" id="content"></li>
+        <br>
+        <span th:text="${message.getContent()}"></span>
 
-    <label for="chat">
-        <input type="text" id="chat" name="messages">
-    </label>
+    </ul>
+</div>
     <br>
 <form action="/api/message/" method="post">
     <label for="message">
