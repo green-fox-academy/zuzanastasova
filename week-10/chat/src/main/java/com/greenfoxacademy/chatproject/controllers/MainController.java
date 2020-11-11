@@ -63,18 +63,16 @@ public class MainController {
     }
 
     @GetMapping("/api/message/")
-    public String getMessagePage(Model model, @ModelAttribute GetMessageRequestDTO getMessageRequestDTO, HttpSession session){
-        session.setAttribute("apiKey", userService.getApiKey());
+    public String getMessagePage(Model model, @ModelAttribute GetMessageRequestDTO getMessageRequestDTO){
+
         model.addAttribute("messages", messageService.getMessages(getMessageRequestDTO));
         return "message";
     }
 
     @PostMapping("/api/message/")
-    public String postMessage(Model model, @ModelAttribute PostMessageRequestDTO postMessageRequestDTO, @ModelAttribute GetMessageRequestDTO getMessageRequestDTO, HttpSession session){
-        session.setAttribute("apiKey", userService.getApiKey());
-        model.addAttribute("messages", messageService.getMessages(getMessageRequestDTO));
+    public String postMessage(@ModelAttribute PostMessageRequestDTO postMessageRequestDTO){
         messageService.postMessage(postMessageRequestDTO);
-        return "message";
+        return "redirect:/api/message/";
     }
 
     @PostMapping("/api/user/logout")
