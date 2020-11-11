@@ -1,10 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th=http://www.thymeleaf.org>
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
-$END$
+<p th:if="${isUrlAlias}" th:text="${message}" th:style="|color: red|"></p>
+<p th:unless="${isUrlAlias}" th:text="${message}"></p>
+<form action="/save-link" method="post">
+    <label for="url">URL
+        <input type="text" name="url" id="url" th:value="${url}">
+    </label>
+    <br>
+    <label for="alias">Alias
+        <input type="text" name="alias" id="alias" th:value="${alias}">
+    </label>
+    <br>
+    <button type="submit">Submit</button>
+</form>
 </body>
 </html>
