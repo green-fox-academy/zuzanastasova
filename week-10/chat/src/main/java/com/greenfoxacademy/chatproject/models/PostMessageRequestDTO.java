@@ -1,15 +1,15 @@
 package com.greenfoxacademy.chatproject.models;
 
-public class MessageRequestDTO {
+public class PostMessageRequestDTO {
 
     private Integer channelId;
     private String channelSecret;
     private String content;
 
-    public MessageRequestDTO() {
+    public PostMessageRequestDTO() {
     }
 
-    public MessageRequestDTO(Integer channelId, String channelSecret, String content) {
+    public PostMessageRequestDTO(Integer channelId, String channelSecret, String content) {
         this.channelId = channelId;
         this.channelSecret = channelSecret;
         this.content = content;

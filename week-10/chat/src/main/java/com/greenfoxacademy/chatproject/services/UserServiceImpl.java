@@ -13,9 +13,14 @@ public class UserServiceImpl implements UserService {
     public void register(UserRequestDTO userRequestDTO){
         RestTemplate restTemplate = new RestTemplate();
         HttpEntity<UserRequestDTO> requestUser = new HttpEntity<>(userRequestDTO);
-        ResponseEntity<UserResponseDTO> responseUser = restTemplate
-                .exchange("https://sage-chat.herokuapp.com/api/user/register", HttpMethod.POST, requestUser, UserResponseDTO.class);
-        UserResponseDTO responseBody = responseUser.getBody();
+        ResponseEntity<UserRegisterResponseDTO> responseUser;
+        try {
+            responseUser = restTemplate
+                    .exchange("https://sage-chat.herokuapp.com/api/user/register", HttpMethod.POST, requestUser, UserRegisterResponseDTO.class);
+        }catch (Exception e){
+            responseUser = new ResponseEntity<>(new UserRegisterResponseDTO(), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        UserRegisterResponseDTO responseBody = responseUser.getBody();
     }
 
     public String login(UserRequestDTO userRequestDTO){
@@ -36,37 +41,41 @@ public class UserServiceImpl implements UserService {
             return null;
     }
 
-    public void update(UpdateRequestDTO updateRequestDTO){
+    public void update(UserUpdateRequestDTO userUpdateRequestDTO){
 
         HttpHeaders headers = new HttpHeaders();
         headers.set("apiKey", apiKey);
         RestTemplate restTemplate = new RestTemplate();
-        HttpEntity<UpdateRequestDTO> requestUser = new HttpEntity<>(updateRequestDTO, headers);
-        ResponseEntity<UpdateResponseDTO> responseUser;
+        HttpEntity<UserUpdateRequestDTO> requestUser = new HttpEntity<>(userUpdateRequestDTO, headers);
+        ResponseEntity<UserUpdateResponseDTO> responseUser;
         try {
             responseUser = restTemplate
-                    .exchange("https://sage-chat.herokuapp.com/api/user/update", HttpMethod.POST, requestUser, UpdateResponseDTO.class);
+                    .exchange("https://sage-chat.herokuapp.com/api/user/update", HttpMethod.POST, requestUser, UserUpdateResponseDTO.class);
         } catch (Exception e) {
-            responseUser = new ResponseEntity<>(new UpdateResponseDTO(), HttpStatus.INTERNAL_SERVER_ERROR);
+            responseUser = new ResponseEntity<>(new UserUpdateResponseDTO(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        UpdateResponseDTO responseBody = responseUser.getBody();
+        UserUpdateResponseDTO responseBody = responseUser.getBody();
+    }
+
+    public String getApiKey(){
+        return apiKey;
     }
 
     public Boolean logout(){
-        RestTemplate restTemplate = new RestTemplate();
         HttpHeaders headers = new HttpHeaders();
         headers.set("apiKey", apiKey);
-        HttpEntity request = new HttpEntity<>(headers);
-        ResponseEntity<Boolean> response;
+        RestTemplate restTemplate = new RestTemplate();
+        HttpEntity<String> requestUser = new HttpEntity<>(headers);
+        ResponseEntity<Boolean> responseUser;
         try {
-            response = restTemplate.exchange("https://sage-chat.herokuapp.com/api/user/logout", HttpMethod.POST, request, Boolean.class);
-        } catch (Exception e){
-            response = new ResponseEntity<>(Boolean.FALSE, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-        Boolean responseBody = response.getBody();
-        if (responseBody){
+            responseUser = restTemplate
+                    .exchange("https://sage-chat.herokuapp.com/api/user/logout", HttpMethod.POST, requestUser, Boolean.class);
             apiKey = "";
+            return responseUser.getBody();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return false;
         }
-        return responseBody;
     }
+
 }

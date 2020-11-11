@@ -3,16 +3,16 @@ package com.greenfoxacademy.chatproject.models;
 import com.fasterxml.jackson.annotation.JsonInclude;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class UpdateResponseDTO {
+public class UserUpdateResponseDTO {
 
     private String username;
     private Long userId;
     private String avatarUrl;
 
-    public UpdateResponseDTO() {
+    public UserUpdateResponseDTO() {
     }
 
-    public UpdateResponseDTO(String username, Long userId, String avatarUrl) {
+    public UserUpdateResponseDTO(String username, Long userId, String avatarUrl) {
         this.username = username;
         this.userId = userId;
         this.avatarUrl = avatarUrl;

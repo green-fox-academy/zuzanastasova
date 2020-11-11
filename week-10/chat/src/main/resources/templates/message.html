@@ -7,13 +7,22 @@
 <body>
 
 <h1>Here you can chat with others</h1>
+
+    <label for="chat">
+        <input type="text" id="chat" name="messages">
+    </label>
+    <br>
 <form action="/api/message/" method="post">
     <label for="message">
         Write your message:
-        <input type="text" id="message" name="message" placeholder="Insert your message">
+        <input type="text" id="message" name="content" placeholder="Insert your message">
     </label>
+<br>
     <button type="submit">Send message</button>
 </form>
-<button type="submit" class="btn btn-secondary"><a href="/api/user/logout">Logout</a></button>
+<form action="/api/user/logout" method="post">
+<button type="submit" class="btn btn-secondary">Logout</button>
+</form>
+<button type="submit" class="btn btn-secondary"><a href="/api/user/update">Update your profile</a></button>
 </body>
 </html>

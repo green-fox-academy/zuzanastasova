@@ -4,19 +4,19 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import java.util.Date;
 
-public class MessageResponseDTO {
+public class PostMessageResponseDTO {
 
     private String content;
     @Temporal(TemporalType.TIMESTAMP)
-    private Date date;
-    private UpdateResponseDTO author;
+    private Date created;
+    private UserUpdateResponseDTO author;
 
-    public MessageResponseDTO() {
+    public PostMessageResponseDTO() {
     }
 
-    public MessageResponseDTO(String content, UpdateResponseDTO author) {
+    public PostMessageResponseDTO(String content, UserUpdateResponseDTO author) {
         this.content = content;
-        this.date = null;
+        this.created = null;
         this.author = author;
     }
 
@@ -28,19 +28,19 @@ public class MessageResponseDTO {
         this.content = content;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getCreated() {
+        return created;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setCreated(Date created) {
+        this.created = created;
     }
 
-    public UpdateResponseDTO getAuthor() {
+    public UserUpdateResponseDTO getAuthor() {
         return author;
     }
 
-    public void setAuthor(UpdateResponseDTO author) {
+    public void setAuthor(UserUpdateResponseDTO author) {
         this.author = author;
     }
 }
