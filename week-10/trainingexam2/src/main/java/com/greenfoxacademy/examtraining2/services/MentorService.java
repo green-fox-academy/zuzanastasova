@@ -10,4 +10,5 @@ public interface MentorService {
     Long saveMentorWithClassName(MentorDTO mentorDTO);
     Boolean existsMentorByName(String name);
     Mentor findMentorById(Long id);
+    public List<MentorDTO> getMentorsInClass(String className);
 }

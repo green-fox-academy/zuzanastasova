@@ -7,4 +7,6 @@ import java.util.List;
 public interface ClassService {
     List<GFAClass> findAllClasses();
     GFAClass findClassByName(String name);
+    Long findClassIdByClassName(String className);
+
 }

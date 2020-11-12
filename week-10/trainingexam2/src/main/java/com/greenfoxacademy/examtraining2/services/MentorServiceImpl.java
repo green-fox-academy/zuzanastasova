@@ -7,6 +7,7 @@ import com.greenfoxacademy.examtraining2.repositories.MentorRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class MentorServiceImpl implements MentorService{
@@ -40,4 +41,18 @@ public class MentorServiceImpl implements MentorService{
         return mentorRepository.findMentorById(id);
     }
 
+    public List<MentorDTO> getMentorsInClass(String className) {
+        Long id = classService.findClassIdByClassName(className);
+
+        var mentors = mentorRepository.findAll();
+
+        List<MentorDTO> mentorDtoList = mentors.stream()
+                .map(MentorDTO::new)
+                .collect(Collectors.toList());
+
+        List<MentorDTO> list =mentorDtoList.stream()
+                .filter(mentorDto1 -> mentorDto1.getGfaClass().getId() == id)
+                .collect(Collectors.toList());
+        return list;
+    }
 }

@@ -23,4 +23,8 @@ public class ClassServiceImpl implements ClassService{
     public GFAClass findClassByName(String name){
         return classRepository.findGFAClassByName(name);
     }
+
+    public Long findClassIdByClassName(String className){
+        return classRepository.findClassIdByClassName(className);
+    }
 }
