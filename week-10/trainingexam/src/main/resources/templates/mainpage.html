@@ -9,11 +9,11 @@
 <p th:unless="${isUrlAlias}" th:text="${message}"></p>
 <form action="/save-link" method="post">
     <label for="url">URL
-        <input type="text" name="url" id="url" th:value="${url}">
+        <input type="text" name="url" id="url" th:value="${url}" required>
     </label>
     <br>
     <label for="alias">Alias
-        <input type="text" name="alias" id="alias" th:value="${alias}">
+        <input type="text" name="alias" id="alias" th:value="${alias}" required>
     </label>
     <br>
     <button type="submit">Submit</button>

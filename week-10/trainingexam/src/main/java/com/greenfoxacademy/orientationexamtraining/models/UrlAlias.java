@@ -1,11 +1,12 @@
 package com.greenfoxacademy.orientationexamtraining.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.Random;
-import java.util.function.Predicate;
 
 @Entity
 public class UrlAlias {
@@ -16,11 +17,12 @@ public class UrlAlias {
     private String url;
     private String alias;
     private int hitCount;
-    private String secreteCode;
+    @JsonIgnore
+    private String secretCode;
 
     public UrlAlias() {
         Random r = new Random();
-        this.secreteCode = String.format("%04d", r.nextInt(1001));
+        this.secretCode = String.format("%04d", r.nextInt(1001));
     }
 
     public UrlAlias(String url, String alias, int hitCount) {
@@ -62,11 +64,11 @@ public class UrlAlias {
         this.hitCount = hitCount;
     }
 
-    public String getSecreteCode() {
-        return secreteCode;
+    public String getSecretCode() {
+        return secretCode;
     }
 
-    public void setSecreteCode(String secreteCode) {
-        this.secreteCode = secreteCode;
+    public void setSecretCode(String secreteCode) {
+        this.secretCode = secreteCode;
     }
 }

@@ -23,11 +23,23 @@ public class UrlAliasServiceImpl implements UrlAliasService{
         urlAliasRepository.save(urlAlias);
     }
 
-    public String getSecreteCode(UrlAlias urlAlias){
-        return urlAlias.getSecreteCode();
+    public Boolean isUrlAliasExistingByAlias(String alias) {
+        return urlAliasRepository.existsUrlAliasByAlias(alias);
     }
 
-    public Boolean isUrlAlias(String alias) {
-        return urlAliasRepository.existsUrlAliasByAlias(alias);
+    public UrlAlias findUrlAliasByAlias(String alias) {
+        return urlAliasRepository.findUrlAliasByAlias(alias);
+    }
+
+    public void deleteUrlAlias(Long id) {
+        urlAliasRepository.deleteById(id);
+    }
+
+    public UrlAlias findUrlAliasById(Long id) {
+        return urlAliasRepository.findUrlAliasById(id);
+    }
+
+    public Boolean isUrlAliasExistingById(Long id) {
+        return urlAliasRepository.existsUrlAliasById(id);
     }
 }

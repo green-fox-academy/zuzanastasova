@@ -7,8 +7,11 @@ import java.util.List;
 public interface UrlAliasService {
 
     void saveUrlAlias(UrlAlias urlAlias);
-    public String getSecreteCode(UrlAlias urlAlias);
-    public List<UrlAlias> getAllUrlAliases();
-    public Boolean isUrlAlias(String alias);
+    List<UrlAlias> getAllUrlAliases();
+    Boolean isUrlAliasExistingByAlias(String alias);
+    UrlAlias findUrlAliasByAlias(String alias);
+    void deleteUrlAlias(Long id);
+    UrlAlias findUrlAliasById(Long id);
+    Boolean isUrlAliasExistingById(Long id);
 
 }

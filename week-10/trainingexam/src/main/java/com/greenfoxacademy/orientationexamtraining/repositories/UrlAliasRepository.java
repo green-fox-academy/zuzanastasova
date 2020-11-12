@@ -8,5 +8,8 @@ import org.springframework.stereotype.Repository;
 public interface UrlAliasRepository extends JpaRepository<UrlAlias, Long> {
 
     Boolean existsUrlAliasByAlias(String alias);
+    UrlAlias findUrlAliasByAlias (String alias);
+    UrlAlias findUrlAliasById (Long id);
+    Boolean existsUrlAliasById (Long Id);
 
 }
