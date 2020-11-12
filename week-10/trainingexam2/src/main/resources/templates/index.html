@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th=http://www.thymeleaf.org>
+<head>
+    <meta charset="UTF-8">
+    <title>GFA Mentor Scheduler</title>
+</head>
+<body>
+<h1>Welcome to Mentor Scheduler :)</h1>
+<p>See detail of mentors:</p>
+<ul th:each="mentor : ${mentors}">
+    <li><a th:href="@{|/mentor/${mentor.id}|}" th:text="${mentor.getName()}"></a></li>
+</ul>
+<br>
+<h2>Add new Mentor</h2>
+<form action="/mentor" method="post">
+    <label>Name
+        <br>
+    <input type="text" name="name" required>
+    </label>
+    <br>
+    <p>Class</p>
+    <div th:each="class : ${classes}">
+    <input type="radio" name="className" th:text="${class.getName()}" th:value="${class.getName()}">
+    <br>
+    </div>
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>
