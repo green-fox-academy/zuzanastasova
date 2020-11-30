@@ -59,4 +59,13 @@ public class MovieServiceImpl{
     public List<MovieResult> getAllMoviesInDatabase() {
         return movieRepository.findAll();
     }
+
+    public MovieResult saveMovieResult(MovieResult movieResult) throws Exception {
+        if(movieRepository.existsById(movieResult.getId())){
+            throw new Exception("Movie already exists!");
+        } else {
+            movieRepository.save(movieResult);
+
+        } return movieResult;
+    }
 }
